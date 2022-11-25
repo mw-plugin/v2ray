@@ -40,7 +40,7 @@ Install_v2ray()
 Uninstall_v2ray()
 {
 	rm -rf $serverPath/v2ray
-	echo "Uninstall completed" > $install_tmp
+	echo "uninstall completed" > $install_tmp
 }
 
 action=$1
