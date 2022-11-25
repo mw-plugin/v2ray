@@ -24,12 +24,12 @@ Install_v2ray()
 
 	if [ "Darwin" == "$SYSOS" ];then
 		echo 'macosx unavailable' > $install_tmp
-		cat $curPath/tmp/v2ray.json > /usr/local/etc/v2ray/config.json
+		cat $curPath/conf/v2ray.json > $serverPath/v2ray/config.json
 		exit 0 
 	fi
 
 	bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
-	cat $curPath/tmp/v2ray.json > /usr/local/etc/v2ray/config.json
+	cat $curPath/conf/v2ray.json > $serverPath/v2ray/config.json
 
 	cd ${rootPath} && python3 ${rootPath}/plugins/v2ray/index.py start
 	cd ${rootPath} && python3 ${rootPath}/plugins/v2ray/index.py initd_install
