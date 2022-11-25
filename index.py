@@ -5,6 +5,7 @@ import io
 import os
 import time
 import shutil
+import json
 
 sys.path.append(os.getcwd() + "/class/core")
 import mw
@@ -145,6 +146,15 @@ def getLog():
 def getErrLog():
     return '/var/log/v2ray/error.log'
 
+
+def list():
+    cfg = getPathFile()
+    content = mw.readFile(cfg)
+    content = json.loads(content)
+
+    return mw.returnJson(False, 'ok', content['inbounds'])
+
+
 if __name__ == "__main__":
     func = sys.argv[1]
     if func == 'status':
@@ -169,5 +179,7 @@ if __name__ == "__main__":
         print(getLog())
     elif func == 'error_log':
         print(getErrLog())
+    elif func == 'list':
+        print(list())
     else:
         print('error')
