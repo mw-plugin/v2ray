@@ -1,0 +1,59 @@
+{
+	"log":{
+		"access":"/var/log/v2ray/access.log",
+		"error":"/var/log/v2ray/error.log",
+		"loglevel":"debug"
+	},
+	"inbounds":[{
+    "port": 34862,
+    "listen": "127.0.0.1",
+    "protocol": "vmess",
+    "settings": {
+      "clients": [
+        {
+          "id": "6e1e5234-05ee-45fe-b28d-80e91edb7f30",
+          "alterId": 64
+        }
+      ]
+    },
+    "streamSettings":{
+        "network": "ws",
+        "wsSettings": {
+          "path": "/ws"
+        }
+     }
+  	}],
+	"outbounds":[
+		{
+			"tag":"http_proxy",
+			"protocol":"http",
+			"settings":{
+				"servers":[
+					{
+						"address":"x.x.x.x",
+						"port":41214,
+						"users":[
+							{
+								"user":"user",
+								"pass":"password"
+							}]
+					}]
+			}
+		},
+		{
+			"tag":"direct",
+			"protocol":"freedom",
+			"settings":{
+			}
+		}],
+	"routing":{
+		"domainStrategy":"IPOnDemand",
+		"rules":[
+			{
+				"type":"field",
+				"ip":[
+					"geoip:private"],
+				"outboundTag":"direct"
+			}]
+	}
+}
