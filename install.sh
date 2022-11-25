@@ -29,7 +29,7 @@ Install_v2ray()
 	fi
 
 	bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
-	cat $curPath/conf/v2ray.json > $serverPath/v2ray/config.json
+	cat $curPath/conf/v2ray.json > /usr/local/etc/v2ray/config.json
 
 	cd ${rootPath} && python3 ${rootPath}/plugins/v2ray/index.py start
 	cd ${rootPath} && python3 ${rootPath}/plugins/v2ray/index.py initd_install
