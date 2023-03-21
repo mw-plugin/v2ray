@@ -51,8 +51,7 @@
 		"rules":[
 			{
 				"type":"field",
-				"ip":[
-					"geoip:private"],
+				"ip":["geoip:private"],
 				"outboundTag":"direct"
 			}]
 	}

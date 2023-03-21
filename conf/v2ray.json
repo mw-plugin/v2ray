@@ -7,7 +7,7 @@
     "inbounds": [
         {
             "port": 34861,
-            "listen": "127.0.0.1",
+            "listen": "0.0.0.0",
             "protocol": "vmess",
             "settings": {
                 "clients": [
@@ -40,8 +40,7 @@
         "rules": [
             {
                 "type": "field",
-                "ip": [
-                    "geoip:private"],
+                "ip": [ "geoip:private" ],
                 "outboundTag": "blocked"
             }
         ]
