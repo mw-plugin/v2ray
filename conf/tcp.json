@@ -1,0 +1,74 @@
+{
+    "log" : {
+        "access" : "/var/log/v2ray/access.log",
+        "error" : "/var/log/v2ray/error.log",
+        "loglevel":"warning"
+    },
+    "inbounds": [
+        {
+            "port": 11011,
+            "listen": "0.0.0.0",
+            "protocol": "vmess",
+            "settings": {
+                "clients": [
+                    {
+                        "id": "6e1e5234-05ee-45fe-b28d-80e91edb7f30",
+                        "alterId": 64
+                    }
+                ]
+            },
+            "streamSettings":{
+                "network": "ws",
+                "wsSettings": {
+                    "path": "/ws"
+                }
+            }
+        }],
+    "outbounds": [
+        {
+      		"sendThrough" : "0.0.0.0",
+            "tag":"ws",
+			"protocol":"vmess",
+            "settings":
+                {
+                    "vnext":[
+                        {
+                            "address": "x.x.x.x",
+                            "port": 19821,
+                            "users":[
+                                {
+                                    "id": "3b3d22ef-971f-40c7-86c3-a6df11b887b0",
+                                    "alterId": 0,
+                                    "security": "auto",
+                                    "level": 0
+                                }
+                            ],
+                            "header": {
+                              "type": "tcp"
+                            }
+                        }
+                    ]
+                }
+        }
+    ],
+    "routing": {
+        "rules": [
+            {
+                "type": "field",
+                "ip": ["geoip:private"],
+                "outboundTag": "ws"
+            }
+        ]
+    },
+    "inboundDetour": [
+        {
+            "protocol": "shadowsocks",
+            "port": 30008,
+            "settings": {
+                "method": "aes-128-gcm",
+                "password": "123123123",
+                "udp": false
+            }
+        }
+    ]
+}
